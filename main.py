@@ -23,7 +23,7 @@ if not SUPABASE_URL or not SUPABASE_KEY:
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-SIMILARITY_THRESHOLD = 0.6
+SIMILARITY_THRESHOLD = 0.5
 
 
 # =========================
@@ -167,7 +167,7 @@ async def match_face(
 
         return {
             "success": is_match,
-            "user_id": user["id"] if is_match else None,
+            "user_id": user["id"],
             "confidence": similarity,
             "model_latency_ms": int((time.time() - start) * 1000),
             "ip_address": client_ip
