@@ -44,9 +44,11 @@ def parse_embedding(embedding):
     return np.array(embedding, dtype=float)
 
 
-def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
-    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
-
+def cosine_similarity(a, b):
+    denom = (np.linalg.norm(a) * np.linalg.norm(b))
+    if denom == 0:
+        return 0.0
+    return float(np.dot(a, b) / denom)
 
 def extract_embedding(image_bytes: bytes):
     try:
@@ -68,7 +70,8 @@ def extract_embedding(image_bytes: bytes):
 
         return np.array(reps[0]["embedding"], dtype=float)
 
-    except Exception:
+    except Exception as e:
+        print("DeepFace error:", e)
         return None
 
 

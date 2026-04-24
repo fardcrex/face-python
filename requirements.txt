@@ -3,6 +3,8 @@ uvicorn
 numpy
 opencv-python-headless
 deepface==0.0.79
+tensorflow==2.15.0
 tf-keras
 supabase
 python-multipart
+python-dotenv
