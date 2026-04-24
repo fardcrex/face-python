@@ -129,7 +129,6 @@ async def register_user(
 
         return {
             "success": True,
-            "user": res.data,
             "latency_ms": int((time.time() - start) * 1000)
         }
 
@@ -179,3 +178,11 @@ async def match_face(
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/")
+def root():
+    return {
+        "service": "Face Recognition API",
+        "status": "running",
+        "version": "1.0.0"
+    }
